@@ -1,9 +1,34 @@
+import { BsPersonCircle } from "react-icons/bs";
+import { Link, NavLink } from "react-router-dom";
 
 
 const NavBar = () => {
     const navItems = <>
 
-    
+        <li><NavLink
+            to="/"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" :
+                    isActive ? "text-[#EEFF25] font-extrabold" : ''
+            }>Home</NavLink></li>
+
+        <li><NavLink
+            to="/contactus"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" :
+                    isActive ? "text-[#EEFF25] font-extrabold " : ''
+            }>Contact Us</NavLink></li>
+
+        <li><NavLink
+            to="/menu"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" :
+                    isActive ? "text-[#EEFF25] font-extrabold " : ''
+            }>Our Menu</NavLink></li>
+
+
+
+
     </>
     return (
         <div>
@@ -17,15 +42,22 @@ const NavBar = () => {
                             {navItems}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">BISTRO BOSS <br />Restaurant</a>
+                    <a className="btn btn-ghost text-3xl font-cinzel font-bold	">BISTRO BOSS <br />Restaurant</a>
+                    {/* <p className="btn btn-ghost text-3xl font-cinzel font-bold	">BISTRO BOSS</p>
+                    <p className="btn btn-ghost text-2xl font-cinzel font-bold	">RESTAURANT</p>
+                    <br /> */}
+                    {/* <h2 className="btn btn-ghost font-cinzel text-2xl font-bold">Restaurant</h2> */}
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                    {navItems}
+                        {navItems}
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    <Link to="/login">
+                        <a className="text-[#FFF] font-extrabold uppercase mr-3">Sign In</a>
+                    </Link>
+                    <BsPersonCircle className="text-5xl mr-4 text-[#FFFFFF] fo"></BsPersonCircle>
                 </div>
             </div>
 

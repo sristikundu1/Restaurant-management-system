@@ -9,7 +9,7 @@ const BistroBoss = () => {
                     <div className="flex justify-center items-center p-16 ">
 
                         <div className="ml-14 text-[#151515] text-center">
-                            <h2 className='text-5xl	mb-4'>Bistro Boss</h2>
+                            <h2 className='text-5xl	mb-4 font-cinzel'>Bistro Boss</h2>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, libero accusamus laborum deserunt ratione dolor officiis praesentium! Deserunt magni aperiam dolor eius dolore at, nihil iusto ducimus incidunt quibusdam nemo.</p>
                         </div>
                     </div>
