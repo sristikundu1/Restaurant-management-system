@@ -1,21 +1,14 @@
-import { useEffect, useState } from "react";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import MenuCard from "./MenuCard";
+import Usemenu from "../../../Hooks/Usemenu";
 
 
 const ChefMenu = () => {
 
-    const [chefMenu, setChefMenu] = useState([]);
+    const [menu] = Usemenu();
+    const chefItems = menu.filter(item => item.category === 'chef')
 
-    useEffect(() => {
-        fetch('menu.json')
-            .then(res => res.json())
-            .then(data => {
-                const popularItems = data.filter(item => item.category === 'chef')
-                setChefMenu(popularItems)
-            })
-    }, [])
-
+   
 
     return (
         <div className='max-w-5xl mx-auto mb-10'>
@@ -27,7 +20,7 @@ const ChefMenu = () => {
             </section>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-7 lg:grid-cols-3 lg:gap-3">
                 {
-                    chefMenu.map(item => <MenuCard
+                    chefItems.map(item => <MenuCard
                         key={item._id}
                         item={item}>
                     </MenuCard>)

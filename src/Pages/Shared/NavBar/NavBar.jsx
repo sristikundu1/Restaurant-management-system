@@ -13,7 +13,7 @@ const NavBar = () => {
             }>Home</NavLink></li>
 
         <li><NavLink
-            to="/contactus"
+            to="/contact"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" :
                     isActive ? "text-[#EEFF25] font-extrabold " : ''
@@ -25,6 +25,13 @@ const NavBar = () => {
                 isPending ? "pending" :
                     isActive ? "text-[#EEFF25] font-extrabold " : ''
             }>Our Menu</NavLink></li>
+
+        <li><NavLink
+            to="/shop/salad"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" :
+                    isActive ? "text-[#EEFF25] font-extrabold " : ''
+            }>Our Shop</NavLink></li>
 
 
 
