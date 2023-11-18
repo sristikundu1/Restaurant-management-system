@@ -30,7 +30,7 @@ const OurMenu = () => {
                 <title>Bistro Boss | Our Menu</title>
             </Helmet>
 
-            <NavBar></NavBar>
+           
 
             <Cover img={banner}
                 title="OUR MENU"
@@ -81,7 +81,7 @@ const OurMenu = () => {
                 para1="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer"
                 para2="took a galley of type and scrambled it to make a type specimen book."></MenuCategory>
 
-            <Footer></Footer>
+          
 
         </div>
     );

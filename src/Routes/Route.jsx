@@ -5,12 +5,17 @@ import OurMenu from "../Pages/OurMenu/OurMenu/OurMenu";
 import OurShop from "../Pages/OurShop/OurShop/OurShop";
 import ContactUs from "../Pages/ContactUs/ContactUs/ContactUs";
 import Login from "../Pages/Login/Login";
+import SignUp from "../Pages/SignUp/SignUp";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import DashBoard from "../MainLayOut/DashBoard";
+import Cart from "../Pages/DashBoard/Cart/Cart";
 
 
 const Route = createBrowserRouter([
     {
         path:"/",
         element:<MainLayOut></MainLayOut>,
+        errorElement:<ErrorPage></ErrorPage>,
         children:[
             {
                 path:"/",
@@ -31,6 +36,20 @@ const Route = createBrowserRouter([
             {
                 path:"/login",
                 element:<Login></Login>
+            },
+            {
+                path:"signup",
+                element:<SignUp></SignUp>
+            }
+        ]
+    },
+    {
+        path:"dashboard",
+        element:<DashBoard></DashBoard>,
+        children:[
+            {
+                path:"cart",
+                element:<Cart></Cart>
             }
         ]
     }

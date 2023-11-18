@@ -1,8 +1,25 @@
+import { useContext } from "react";
 import { BsPersonCircle } from "react-icons/bs";
 import { Link, NavLink } from "react-router-dom";
-
+import { AuthContext } from "../../../Providers/AuthProvider";
+import cartIcon from "../../../assets/icon/cart.jpg"
+import useCart from "../../../Hooks/useCart";
 
 const NavBar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const[cart] = useCart()
+
+    const handleLogOut = () => {
+        logOut()
+            .then((result) => {
+                console.log(result.user);
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+
+    }
+
     const navItems = <>
 
         <li><NavLink
@@ -33,6 +50,16 @@ const NavBar = () => {
                     isActive ? "text-[#EEFF25] font-extrabold " : ''
             }>Our Shop</NavLink></li>
 
+        <li><NavLink
+            to="/dashboard/cart"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" :
+                    isActive ? "text-[#EEFF25] font-extrabold " : ''
+            }> <button className="btn bg-transparent -mt-2">
+                <img className="w-6" src={cartIcon} alt="" />
+                <div className="badge badge-secondary">+{cart.length}</div>
+            </button></NavLink></li>
+
 
 
 
@@ -61,10 +88,24 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to="/login">
-                        <a className="text-[#FFF] font-extrabold uppercase mr-3">Sign In</a>
-                    </Link>
-                    <BsPersonCircle className="text-5xl mr-4 text-[#FFFFFF] fo"></BsPersonCircle>
+
+                    {
+                        user ? <>
+                            <p>{user?.displayName}</p>
+                            <img className="w-12 h-10 mx-2 rounded-full" src={user?.photoURL} alt="" />
+
+                            <button onClick={handleLogOut} className="text-[#FFF] font-extrabold uppercase mr-3">LogOut</button>
+
+                        </>
+                            :
+                            <>
+                                <Link to="/login">
+                                    <button className="text-[#FFF] font-extrabold uppercase mr-3">Sign In</button>
+                                </Link>
+                                <BsPersonCircle className="text-5xl mr-4 text-[#FFFFFF] fo"></BsPersonCircle>
+                            </>
+                    }
+
                 </div>
             </div>
 

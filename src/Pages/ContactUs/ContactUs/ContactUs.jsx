@@ -1,6 +1,4 @@
 import Cover from "../../Shared/Cover/Cover";
-import Footer from "../../Shared/Footer/Footer";
-import NavBar from "../../Shared/NavBar/NavBar";
 import banner from "../../../assets/contact/banner.jpg"
 import { Helmet } from "react-helmet-async";
 import Location from "../Location/Location";
@@ -13,7 +11,7 @@ const ContactUs = () => {
                 <title>Bistro Boss | Contact Us</title>
             </Helmet>
 
-            <NavBar></NavBar>
+       
 
             <Cover
             img={banner}
@@ -23,7 +21,7 @@ const ContactUs = () => {
             <Location></Location>
 
             <Form></Form>
-            <Footer></Footer>
+          
         </div>
     );
 };

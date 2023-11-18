@@ -35,7 +35,7 @@ const OurShop = () => {
                 <title>Bistro Boss | Our Shop</title>
             </Helmet>
 
-            <NavBar></NavBar>
+            
             <Cover
                 img={banner}
                 title="OUR SHOP"
@@ -76,7 +76,7 @@ const OurShop = () => {
                     </TabPanel>
                 </Tabs>
             </div>
-            <Footer></Footer>
+            
 
         </div>
     );
