@@ -8,9 +8,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 const SignUp = () => {
+    const axiosPublic = useAxiosPublic();
+
     const { signUp, googleSignIn, updateUserProfile } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
 
@@ -25,9 +28,20 @@ const SignUp = () => {
 
 
     const handleClickGoogle = () => {
-        googleSignIn().then((result) => {
-            console.log(result.user);
-        })
+        googleSignIn()
+            .then((result) => {
+                console.log(result.user);
+                const guserInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName
+                }
+                axiosPublic.post('/users', guserInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        navigate("/");
+
+                    })
+            })
     }
 
 
@@ -40,17 +54,30 @@ const SignUp = () => {
 
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log("user profile updated");
-                        reset();
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "You successfully sign up",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
 
-                        navigate("/");
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log("user added database");
+
+                                    reset();
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: "You successfully sign up",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+
+                                    navigate("/");
+
+                                }
+                            })
+
                     })
                     .catch(error => console.log(error))
             })

@@ -8,10 +8,14 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 
 const Login = () => {
+    const axiosPublic = useAxiosPublic();
+
+
     const [showPassword, setShowPassword] = useState(false);
     const [success, setSuccess] = useState("");
     const [logINError, setLogInError] = useState("");
@@ -19,11 +23,11 @@ const Login = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
-    
+
 
     const [disabled, setDisabled] = useState(true);
 
-    const { logIn,googleSignIn } = useContext(AuthContext);
+    const { logIn, googleSignIn } = useContext(AuthContext);
 
 
     useEffect(() => {
@@ -31,9 +35,20 @@ const Login = () => {
     }, [])
 
     const handleClickGoogle = () => {
-        googleSignIn().then((result) => {
-            console.log(result.user);
-        })
+        googleSignIn()
+            .then((result) => {
+                console.log(result.user);
+                const guserInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName
+                }
+                axiosPublic.post('/users', guserInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        navigate("/");
+
+                    })
+            })
     }
 
 
